@@ -1,0 +1,65 @@
+﻿@model PagedList.IPagedList<GuestBookZhKassenov.Models.Feedback>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Просмотр записей";
+}
+
+<h2>Оставленные записи</h2>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink("Имя пользователя", "Index", new { sortOrder = ViewBag.NameSort })
+                </th>
+                <th>
+                    @Html.ActionLink("Электронный адрес", "Index", new { sortOrder = ViewBag.EmailSort })
+                </th>
+                <th>Домашняя страница
+                </th>
+                <th>Текст
+                </th>
+                <th>IP
+                </th>
+                <th>Браузер
+                </th>
+                <th>
+                    @Html.ActionLink("Дата добавления", "Index", new { sortOrder = ViewBag.SystimeSort })
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.Encode(item.username)
+                    </td>
+                    <td>
+                        @Html.Encode(item.email)
+                    </td>
+                    <td>
+                        @Html.Encode(item.homepage)
+                    </td>
+                    <td>
+                        @Html.Encode(item.text)
+                    </td>
+                    <td>
+                        @Html.Encode(item.IP)
+                    </td>
+                    <td>
+                        @Html.Encode(item.browser)
+                    </td>
+                    <td>
+                        @Html.Encode(item.systime)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort }))
+</div>

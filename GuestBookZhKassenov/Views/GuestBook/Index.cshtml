@@ -1,0 +1,12 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@model GuestBookZhKassenov.Models.FeedbackViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Captcha("Обновить", "Введите текст с изображения"
+                , 5, "Поле обязательно.", false)
+
+@using(Html.BeginForm("")){
+}

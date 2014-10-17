@@ -1,0 +1,46 @@
+﻿@using GuestBookZhKassenov.Helpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="container">
+
+        <!-- Static navbar -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">ИМЯ ПРОЕКТА</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="@Url.MakeActive("GuestBook")"><a href="@Url.Action("LeaveFeedback","GuestBook")">Гостевая книга</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        <li class="@Url.MakeActive("Feedback")"><a href="@Url.Action("Index","Feedback")">Просмотреть записи</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container-fluid -->
+        </div>
+
+        <!-- Main component for a primary marketing message or call to action -->
+        @RenderBody()
+
+    </div>
+    <!-- /container -->
+
+    @Scripts.Render("~/bundles/bootstrapjs")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
